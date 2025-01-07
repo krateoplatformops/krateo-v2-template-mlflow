@@ -8,6 +8,4 @@ data:
   values: |
     { "organizationName": "{{ .Values.git.toRepo.org }}",
       "repositoryName": "{{ .Values.git.toRepo.name }}",
-      "serviceType": "{{ .Values.app.service.type }}",
-      "servicePort": "{{ .Values.app.service.port }}"
     }

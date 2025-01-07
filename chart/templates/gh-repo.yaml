@@ -10,4 +10,4 @@ spec:
   private: {{ .Values.git.toRepo.private }}
   auto_init: {{ .Values.git.toRepo.initialize }}
   authenticationRefs:
-    bearerAuthRef: {{ include "mlflow-app.fullname" . }}-auth-ref
+    bearerAuthRef: {{ include "mlflow-app.fullname" . }}-github-auth-ref
