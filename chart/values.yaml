@@ -1,0 +1,91 @@
+# Default values for mlflow-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# This is to override the chart name.
+nameOverride: ""
+fullnameOverride: ""
+
+# This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+# This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
+service:
+  # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+  type: ClusterIP
+  # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
+  port: 80
+
+
+git:
+  # @param {boolean} [unsupportedCapabilities] UnsupportedCapabilities enable Go-Git transport.UnsupportedCapabilities Azure DevOps requires capabilities multi_ack / multi_ack_detailed, which are not fully implemented in go-git library and by default are included in transport.UnsupportedCapabilities.
+  unsupportedCapabilities: true
+  # @param {enum{Delete,Orphan}} [deletionPolicy] DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either "Delete" or "Orphan" the external resource.
+  deletionPolicy: Orphan
+  # @param {boolean} [insecure] Insecure is useful with hand made SSL certs
+  insecure: true
+  # @param {object} [fromRepo] Parameters section for Git repository used as template for the application skeleton
+  fromRepo:
+    # @param {string} [scmUrl] (schema+host e.g. https://github.com) for the target Git repository
+    scmUrl: https://github.com
+    # @param {string} [org] Organization/group/subgroup for the target Git repository
+    org: krateoplatformops
+    # @param {string} [name] Name for the target Git repository
+    name: krateo-v2-template-fireworksapp
+    # @param {string} [branch] Branch of Git repository used as template for the application skeleton
+    branch: main
+    # @param {string} [path] Path of Git repository used as template for the application skeleton
+    path: skeleton/
+    # @param {object} [credentials] References to the secrets that contain the credentials required to clone the repository (in case of private ones)
+    credentials:
+      # @param {enum{basic,bearer}} [authMethod] AuthMethod defines the authentication mode. One of 'basic' or 'bearer'
+      authMethod: basic
+      # @param {object} [secretRef] Reference details about the secret where the credentials are stored
+      secretRef:
+        # @param {string} [namespace] Namespace of the secret where the credentials are stored
+        namespace: krateo-system
+        # @param {string} [name] Name of the secret where the credentials are stored
+        name: gh-token
+        # @param {string} [key] Key of the secret to use
+        key: token
+  # @param {object} toRepo Parameters section for Git repository that will be created by Krateo
+  toRepo:
+    # @param {string} [scmUrl] (schema+host e.g. https://github.com) for the target Git repository
+    scmUrl: https://github.com
+    # @param {string} [org] Organization/group/subgroup for the target Git repository
+    org: krateoplatformops-archive
+    # @param {string} name Name for the target Git repository
+    name: mlflow-test-run
+    # @param {string} [branch] Branch for the target Git repository
+    branch: main
+    # @param {string} [path] Path where the template will be placed
+    path: /
+    # @param {object} [credentials] References to the secrets that contain the credentials required to push the content the repository (in case of private ones)
+    credentials:
+      # @param {enum{basic,bearer}} [authMethod] AuthMethod defines the authentication mode. One of 'basic' or 'bearer'
+      authMethod: basic
+      # @param {object} [secretRef] Reference details about the secret where the credentials are stored
+      secretRef:
+        # @param {string} [namespace] Namespace of the secret where the credentials are stored
+        namespace: krateo-system
+        # @param {string} [name] Name of the secret where the credentials are stored
+        name: gh-token
+        # @param {string} [key] Key of the secret to use
+        key: token
+    # @param {string} [apiUrl] URL to use for API
+    apiUrl: https://api.github.com
+    # @param {boolean} [private] Whether the repository is private
+    private: false
+    # @param {boolean} [initialize] Whether the repository must be initialized
+    initialize: true
+    # @param {enum{Delete,Orphan}} [deletionPolicy] DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either "Delete" or "Orphan" the external resource.
+    deletionPolicy: Delete

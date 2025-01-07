@@ -1,0 +1,7 @@
+# .amlignore
+*.csv
+*.h5
+*.zip
+*.tar.gz
+.venv
+large_directory/
