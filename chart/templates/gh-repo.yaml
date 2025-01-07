@@ -11,3 +11,4 @@ spec:
   auto_init: {{ .Values.git.toRepo.initialize }}
   authenticationRefs:
     bearerAuthRef: {{ include "mlflow-app.fullname" . }}-github-auth-ref
+
