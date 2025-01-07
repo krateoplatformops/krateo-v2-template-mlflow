@@ -1,0 +1,158 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "nameOverride": {
+        "type": "string"
+      },
+      "fullnameOverride": {
+        "type": "string"
+      },
+      "git": {
+        "type": "object",
+        "properties": {
+          "unsupportedCapabilities": {
+            "type": "boolean"
+          },
+          "deletionPolicy": {
+            "type": "string",
+            "enum": ["Delete", "Orphan"]
+          },
+          "insecure": {
+            "type": "boolean"
+          },
+          "fromRepo": {
+            "type": "object",
+            "properties": {
+              "scmUrl": {
+                "type": "string"
+              },
+              "org": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "branch": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              },
+              "credentials": {
+                "type": "object",
+                "properties": {
+                  "authMethod": {
+                    "type": "string",
+                    "enum": ["basic", "bearer"]
+                  },
+                  "secretRef": {
+                    "type": "object",
+                    "properties": {
+                      "namespace": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "key": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "toRepo": {
+            "type": "object",
+            "properties": {
+              "scmUrl": {
+                "type": "string"
+              },
+              "org": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "branch": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              },
+              "credentials": {
+                "type": "object",
+                "properties": {
+                  "authMethod": {
+                    "type": "string",
+                    "enum": ["basic", "bearer"]
+                  },
+                  "secretRef": {
+                    "type": "object",
+                    "properties": {
+                      "namespace": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "key": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "apiUrl": {
+                "type": "string"
+              },
+              "private": {
+                "type": "boolean"
+              },
+              "initialize": {
+                "type": "boolean"
+              },
+              "deletionPolicy": {
+                "type": "string",
+                "enum": ["Delete", "Orphan"]
+              }
+            }
+          }
+        }
+      },
+      "mlflow": {
+        "type": "object",
+        "properties": {
+          "experiment": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            }
+          },
+          "credentials": {
+            "type": "object",
+            "properties": {
+              "secretRef": {
+                "type": "object",
+                "properties": {
+                  "namespace": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "key": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
