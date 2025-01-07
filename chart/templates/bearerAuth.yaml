@@ -1,0 +1,12 @@
+kind: BearerAuth
+apiVersion: github.krateo.io/v1alpha1
+metadata:
+  name: {{ include "mlflow-app.fullname" . }}-auth-ref
+  labels:
+    {{- include "mlflow-app.labels" . | nindent 4 }}
+spec:
+  tokenRef:
+    namespace: {{ .Values.git.toRepo.credentials.secretRef.namespace }}
+    name: {{ .Values.git.toRepo.credentials.secretRef.name }}
+    key: {{ .Values.git.toRepo.credentials.secretRef.key }}
+  

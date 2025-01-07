@@ -44,7 +44,7 @@ git:
     # @param {string} [branch] Branch of Git repository used as template for the application skeleton
     branch: main
     # @param {string} [path] Path of Git repository used as template for the application skeleton
-    path: skeleton/
+    path: skeleton/train_diabetes
     # @param {object} [credentials] References to the secrets that contain the credentials required to clone the repository (in case of private ones)
     credentials:
       # @param {enum{basic,bearer}} [authMethod] AuthMethod defines the authentication mode. One of 'basic' or 'bearer'
@@ -52,7 +52,7 @@ git:
       # @param {object} [secretRef] Reference details about the secret where the credentials are stored
       secretRef:
         # @param {string} [namespace] Namespace of the secret where the credentials are stored
-        namespace: krateo-system
+        namespace: mlflow-system
         # @param {string} [name] Name of the secret where the credentials are stored
         name: gh-token
         # @param {string} [key] Key of the secret to use
@@ -76,7 +76,7 @@ git:
       # @param {object} [secretRef] Reference details about the secret where the credentials are stored
       secretRef:
         # @param {string} [namespace] Namespace of the secret where the credentials are stored
-        namespace: krateo-system
+        namespace: mlflow-system
         # @param {string} [name] Name of the secret where the credentials are stored
         name: gh-token
         # @param {string} [key] Key of the secret to use
