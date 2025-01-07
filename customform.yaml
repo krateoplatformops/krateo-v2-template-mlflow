@@ -30,7 +30,7 @@ spec:
       color: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | if .status == "False" then "orange" elif .status == "True" then "green" else "grey" end }
       content: This is a card for MLFlow model scaffolding
       icon: fa-cubes
-      tags: mlflow-system,0.0.2
+      tags: mlflow-system,0.0.3
       title: MLFlow Model Scaffolding
       status: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | "Ready:" + .status }
       date: ${ .getCompositionDefinition.metadata.creationTimestamp }
@@ -68,7 +68,7 @@ spec:
   actions:
     - template:
         id: submit
-        apiVersion: composition.krateo.io/v0-0-2
+        apiVersion: composition.krateo.io/v0-0-3
         verb: POST
         resource: mlflowscaffoldings
         payloadToOverride:
@@ -80,7 +80,7 @@ spec:
           value: ${ "mlflow-system" }
   app:
     template:
-      schema: ${ .getCRD | .spec.versions[] | select(.name == "v0-0-2") | .schema.openAPIV3Schema.properties.spec.properties }
+      schema: ${ .getCRD | .spec.versions[] | select(.name == "v0-0-3") | .schema.openAPIV3Schema.properties.spec.properties }
       propertiesToHide: 
       - fullnameOverride
       - git.properties.deletionPolicy
