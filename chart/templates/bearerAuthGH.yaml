@@ -1,7 +1,7 @@
 kind: BearerAuth
 apiVersion: github.krateo.io/v1alpha1
 metadata:
-  name: {{ include "mlflow-app.fullname" . }}-auth-ref
+  name: {{ include "mlflow-app.fullname" . }}-github-auth-ref
   labels:
     {{- include "mlflow-app.labels" . | nindent 4 }}
 spec:
