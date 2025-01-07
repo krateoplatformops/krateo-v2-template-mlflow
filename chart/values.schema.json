@@ -1,0 +1,201 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "nameOverride": {
+            "type": "string",
+            "default": ""
+        },
+        "fullnameOverride": {
+            "type": "string",
+            "default": ""
+        },
+        "git": {
+            "type": "object",
+            "properties": {
+                "unsupportedCapabilities": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "deletionPolicy": {
+                    "type": "string",
+                    "enum": [
+                        "Delete",
+                        "Orphan"
+                    ],
+                    "default": "Orphan"
+                },
+                "insecure": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "fromRepo": {
+                    "type": "object",
+                    "properties": {
+                        "scmUrl": {
+                            "type": "string",
+                            "default": "https://github.com"
+                        },
+                        "org": {
+                            "type": "string",
+                            "default": "krateoplatformops"
+                        },
+                        "name": {
+                            "type": "string",
+                            "default": "krateo-v2-template-mlflow"
+                        },
+                        "branch": {
+                            "type": "string",
+                            "default": "main"
+                        },
+                        "path": {
+                            "type": "string",
+                            "default": "skeleton/train_diabetes"
+                        },
+                        "credentials": {
+                            "type": "object",
+                            "properties": {
+                                "authMethod": {
+                                    "type": "string",
+                                    "enum": [
+                                        "basic",
+                                        "bearer"
+                                    ],
+                                    "default": "basic"
+                                },
+                                "secretRef": {
+                                    "type": "object",
+                                    "properties": {
+                                        "namespace": {
+                                            "type": "string",
+                                            "default": "mlflow-system"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "default": "gh-token"
+                                        },
+                                        "key": {
+                                            "type": "string",
+                                            "default": "token"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "toRepo": {
+                    "type": "object",
+                    "properties": {
+                        "scmUrl": {
+                            "type": "string",
+                            "default": "https://github.com"
+                        },
+                        "org": {
+                            "type": "string",
+                            "default": "generic-provider-testing"
+                        },
+                        "name": {
+                            "type": "string",
+                            "default": "mlflow-test-run"
+                        },
+                        "branch": {
+                            "type": "string",
+                            "default": "main"
+                        },
+                        "path": {
+                            "type": "string",
+                            "default": "/"
+                        },
+                        "credentials": {
+                            "type": "object",
+                            "properties": {
+                                "authMethod": {
+                                    "type": "string",
+                                    "enum": [
+                                        "basic",
+                                        "bearer"
+                                    ],
+                                    "default": "basic"
+                                },
+                                "secretRef": {
+                                    "type": "object",
+                                    "properties": {
+                                        "namespace": {
+                                            "type": "string",
+                                            "default": "mlflow-system"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "default": "gh-token"
+                                        },
+                                        "key": {
+                                            "type": "string",
+                                            "default": "token"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "apiUrl": {
+                            "type": "string",
+                            "default": "https://api.github.com"
+                        },
+                        "private": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "initialize": {
+                            "type": "boolean",
+                            "default": true
+                        },
+                        "deletionPolicy": {
+                            "type": "string",
+                            "enum": [
+                                "Delete",
+                                "Orphan"
+                            ],
+                            "default": "Delete"
+                        }
+                    }
+                }
+            }
+        },
+        "mlflow": {
+            "type": "object",
+            "properties": {
+                "experiment": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "default": "diabetes-training-exp1"
+                        }
+                    }
+                },
+                "credentials": {
+                    "type": "object",
+                    "properties": {
+                        "secretRef": {
+                            "type": "object",
+                            "properties": {
+                                "namespace": {
+                                    "type": "string",
+                                    "default": "mlflow-system"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "default": "azure-token"
+                                },
+                                "key": {
+                                    "type": "string",
+                                    "default": "access_token"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
