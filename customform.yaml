@@ -1,0 +1,108 @@
+apiVersion: v1
+data:
+  panel: "true"
+kind: ConfigMap
+metadata:
+  name: template-mlflow-scaffolding-card
+  namespace: mlflow-system
+---
+apiVersion: templates.krateo.io/v1alpha1
+kind: Widget
+metadata:
+  name: template-mlflow-scaffolding-card
+  namespace: mlflow-system
+spec:
+  actions:
+  - template:
+      apiVersion: templates.krateo.io/v1alpha1
+      name: template-mlflow-scaffolding-customform
+      namespace: mlflow-system
+      resource: customforms
+      verb: GET
+  - template:
+      apiVersion: core.krateo.io/v1alpha1
+      name: mlflow-scaffolding
+      namespace: mlflow-system
+      resource: compositiondefinitions
+      verb: DELETE
+  app:
+    template:
+      color: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | if .status == "False" then "orange" elif .status == "True" then "green" else "grey" end }
+      content: This is a card for MLFlow model scaffolding
+      icon: fa-cubes
+      tags: mlflow-system,0.0.1
+      title: MLFlow Model Scaffolding
+      status: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | "Ready:" + .status }
+      date: ${ .getCompositionDefinition.metadata.creationTimestamp }
+  propsRef:
+    name: template-mlflow-scaffolding-card
+    namespace: mlflow-system
+  type: card
+  api:
+  - name: getCompositionDefinition
+    path: "/apis/core.krateo.io/v1alpha1/namespaces/mlflow-system/compositiondefinitions/mlflow-scaffolding"
+    verb: GET
+    headers:
+    - 'Accept: application/json'
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: template-mlflow-scaffolding-customform
+  namespace: mlflow-system
+data:
+  onSubmitId: submit
+  onSubmitVerb: POST
+  payloadFormKey: spec
+---
+apiVersion: templates.krateo.io/v1alpha1
+kind: CustomForm
+metadata:
+  name: template-mlflow-scaffolding-customform
+  namespace: mlflow-system
+spec:
+  type: customform
+  propsRef:
+    name: template-mlflow-scaffolding-customform
+    namespace: mlflow-system
+  actions:
+    - template:
+        id: submit
+        apiVersion: composition.krateo.io/v0-0-1
+        verb: POST
+        resource: mlflowscaffoldings
+        # payloadToOverride:
+        # - name: metadata.name
+        #   value: ${ git.toRepo.name }
+        # - name: metadata.namespace
+        #   value: ${ "mlflow-system" }
+  app:
+    template:
+      schema: ${ .getCRD | .spec.versions[] | select(.name == "v0-0-1") | .schema.openAPIV3Schema.properties.spec.properties }
+      propertiesToHide: 
+      - fullnameOverride
+      - git.properties.deletionPolicy
+      - git.properties.fromRepo.properties.branch
+      - git.properties.fromRepo.properties.credentials
+      - git.properties.fromRepo.properties.name
+      - git.properties.fromRepo.properties.org
+      - git.properties.fromRepo.properties.scmUrl
+      - git.properties.insecure
+      - git.properties.toRepo.properties.apiUrl
+      - git.properties.toRepo.properties.branch
+      - git.properties.toRepo.properties.credentials
+      - git.properties.toRepo.properties.deletionPolicy
+      - git.properties.toRepo.properties.initialize
+      - git.properties.toRepo.properties.org
+      - git.properties.toRepo.properties.path
+      - git.properties.toRepo.properties.private
+      - git.properties.toRepo.properties.scmUrl
+      - git.properties.unsupportedCapabilities
+      - mlflow
+      - nameOverride
+  api:
+  - name: getCRD
+    path: "/apis/apiextensions.k8s.io/v1/customresourcedefinitions/mlflowscaffoldings.composition.krateo.io"
+    verb: GET
+    headers:
+    - 'Accept: application/json'

@@ -23,7 +23,7 @@ git:
     name: krateo-v2-template-mlflow
     # @param {string} [branch] Branch of Git repository used as template for the application skeleton
     branch: main
-    # @param {string} [path] Path of Git repository used as template for the application skeleton
+    # @param {enum{skeleton/train_diabetes,skeleton/train_diabetes-v2}} [path] Path of Git repository used as template for the application skeleton
     path: skeleton/train_diabetes
     # @param {object} [credentials] References to the secrets that contain the credentials required to clone the repository (in case of private ones)
     credentials:
