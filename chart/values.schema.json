@@ -50,6 +50,10 @@
                         },
                         "path": {
                             "type": "string",
+                            "enum": [
+                                "skeleton/train_diabetes",
+                                "skeleton/train_diabetes-v2"
+                            ],
                             "default": "skeleton/train_diabetes"
                         },
                         "credentials": {
