@@ -6,26 +6,6 @@
 nameOverride: ""
 fullnameOverride: ""
 
-# This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: true
-  # Automatically mount a ServiceAccount's API credentials?
-  automount: true
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
-
-# This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
-service:
-  # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
-  type: ClusterIP
-  # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
-  port: 80
-
-
 git:
   # @param {boolean} [unsupportedCapabilities] UnsupportedCapabilities enable Go-Git transport.UnsupportedCapabilities Azure DevOps requires capabilities multi_ack / multi_ack_detailed, which are not fully implemented in go-git library and by default are included in transport.UnsupportedCapabilities.
   unsupportedCapabilities: true
@@ -40,7 +20,7 @@ git:
     # @param {string} [org] Organization/group/subgroup for the target Git repository
     org: krateoplatformops
     # @param {string} [name] Name for the target Git repository
-    name: krateo-v2-template-fireworksapp
+    name: krateo-v2-template-mlflow
     # @param {string} [branch] Branch of Git repository used as template for the application skeleton
     branch: main
     # @param {string} [path] Path of Git repository used as template for the application skeleton
@@ -62,7 +42,7 @@ git:
     # @param {string} [scmUrl] (schema+host e.g. https://github.com) for the target Git repository
     scmUrl: https://github.com
     # @param {string} [org] Organization/group/subgroup for the target Git repository
-    org: krateoplatformops-archive
+    org: generic-provider-testing
     # @param {string} name Name for the target Git repository
     name: mlflow-test-run
     # @param {string} [branch] Branch for the target Git repository
@@ -89,3 +69,12 @@ git:
     initialize: true
     # @param {enum{Delete,Orphan}} [deletionPolicy] DeletionPolicy specifies what will happen to the underlying external when this managed resource is deleted - either "Delete" or "Orphan" the external resource.
     deletionPolicy: Delete
+
+mlflow:
+  experiment:
+    name: diabetes-training-exp1
+  credentials:
+    secretRef:
+      namespace: mlflow-system
+      name: azure-token
+      key: access_token
