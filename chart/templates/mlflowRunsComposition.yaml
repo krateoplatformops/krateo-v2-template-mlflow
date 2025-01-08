@@ -1,4 +1,4 @@
-{{- $exp := lookup "mlflow.krateo.io/v1alpha1" "Experiment" .Release.Namespace (include "mlflow-app.fullname" .)-experiment -}}
+{{- $exp := lookup "mlflow.krateo.io/v1alpha1" "Experiment" .Release.Namespace (print (include "mlflow-app.fullname" .) "-experiment") -}}
 {{- if and $exp $exp.status $exp.status.experiment_id }}
 
 kind: MlflowRuns
@@ -11,7 +11,8 @@ spec:
     name: {{ .Values.git.toRepo.name }}
     workflow_id: "run.yaml"
     ref: {{ .Values.git.toRepo.branch }}
-  experiment:
+  experiment: 
     experiment_name: {{ .Values.mlflow.experiment.name }}
     experiment_id: $exp.status.experiment_id 
-  run_name: "mlflow-run-composition-{{ randAlphaNum 5 | lower }}"
+  run_name: mlflow-run-composition-{{ randAlphaNum 5 | lower }}
+{{- end }}
