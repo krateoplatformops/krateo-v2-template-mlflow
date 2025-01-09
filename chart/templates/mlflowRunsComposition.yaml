@@ -4,7 +4,7 @@
 kind: MlflowRuns
 apiVersion: composition.krateo.io/v0-0-1
 metadata:
-  name: {{ print "%s-runs-comp" (include "mlflow-app.fullname" .) | trunc 53 | trimSuffix "-" }}
+  name: {{ printf "%s-runs-comp" (include "mlflow-app.fullname" .) | trunc 53 | trimSuffix "-" }}
 spec:
   repo:
     owner: {{ .Values.git.toRepo.org }}
