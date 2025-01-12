@@ -1,10 +1,15 @@
 {{- $exp := lookup "mlflow.krateo.io/v1alpha1" "Experiment" .Release.Namespace (print (include "mlflow-app.fullname" .) "-experiment") -}}
 {{- if and $exp $exp.status $exp.status.experiment_id }}
-
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ .Values.global.compositionId }}
+---
 kind: MlflowRuns
 apiVersion: composition.krateo.io/v0-0-1
 metadata:
   name: {{ printf "%s-runs-comp" (include "mlflow-app.fullname" .) | trunc 53 | trimSuffix "-" }}
+  namespace: {{ .Values.global.compositionId }}
 spec:
   repo:
     owner: {{ .Values.git.toRepo.org }}
