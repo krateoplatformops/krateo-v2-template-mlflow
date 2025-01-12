@@ -23,8 +23,8 @@ version: CHART_VERSION
 # It is recommended to use it with quotes.
 appVersion: CHART_VERSION
 
-# dependencies:
-# - name: composition-portal-basic-mlflow
-#   version: "0.0.1"
-#   repository: "https://charts.krateo.io"
-#   alias: portal
+dependencies:
+- name: composition-portal-basic-mlflow
+  version: "0.0.2"
+  repository: "https://charts.krateo.io"
+  alias: portal
