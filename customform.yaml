@@ -30,7 +30,7 @@ spec:
       color: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | if .status == "False" then "orange" elif .status == "True" then "green" else "grey" end }
       content: This is a card for MLFlow model scaffolding
       icon: fa-cubes
-      tags: mlflow-system,0.0.5
+      tags: mlflow-system,0.0.6
       title: MLFlow Model Scaffolding
       status: ${ .getCompositionDefinition.status.conditions[] | select(.type == "Ready") | "Ready:" + .status }
       date: ${ .getCompositionDefinition.metadata.creationTimestamp }
@@ -68,19 +68,17 @@ spec:
   actions:
     - template:
         id: submit
-        apiVersion: composition.krateo.io/v0-0-5
+        apiVersion: composition.krateo.io/v0-0-6
         verb: POST
         resource: mlflowscaffoldings
         payloadToOverride:
         - name: metadata.name
           value: ${ git.toRepo.name }
-        - name: spec.mlflow.experiment.name
-          value: ${ git.toRepo.name }
         - name: metadata.namespace
           value: ${ "mlflow-system" }
   app:
     template:
-      schema: ${ .getCRD | .spec.versions[] | select(.name == "v0-0-5") | .schema.openAPIV3Schema.properties.spec.properties }
+      schema: ${ .getCRD | .spec.versions[] | select(.name == "v0-0-6") | .schema.openAPIV3Schema.properties.spec.properties }
       propertiesToHide: 
       - fullnameOverride
       - git.properties.deletionPolicy
@@ -100,7 +98,7 @@ spec:
       - git.properties.toRepo.properties.private
       - git.properties.toRepo.properties.scmUrl
       - git.properties.unsupportedCapabilities
-      - mlflow
+      - mlflow.credentials
       - nameOverride
   api:
   - name: getCRD
