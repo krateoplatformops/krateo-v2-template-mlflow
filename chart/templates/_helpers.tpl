@@ -54,7 +54,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Compose toRepo URL
 */}}
 {{- define "mlflow-app.toRepoUrl" -}}
-{{- printf "%s/%s/%s" .Values.git.toRepo.scmUrl .Values.git.toRepo.org .Values.git.toRepo.name }}
+{{- printf "%s/%s/%s" .Values.git.toRepo.scmUrl .Values.git.toRepo.org .Values.mlflow.experiment.name }}
 {{- end }}
 
 {{/*

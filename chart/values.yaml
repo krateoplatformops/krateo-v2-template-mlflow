@@ -43,8 +43,6 @@ git:
     scmUrl: https://github.com
     # @param {string} [org] Organization/group/subgroup for the target Git repository
     org: generic-provider-testing
-    # @param {string} name Name for the target Git repository
-    name: mlflow-test-run
     # @param {string} [branch] Branch for the target Git repository
     branch: main
     # @param {string} [path] Path where the template will be placed
