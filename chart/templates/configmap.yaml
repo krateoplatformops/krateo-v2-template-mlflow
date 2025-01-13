@@ -7,5 +7,5 @@ metadata:
 data:
   values: |
     { "organizationName": "{{ .Values.git.toRepo.org }}",
-      "repositoryName": "{{ .Values.git.toRepo.name }}",
+      "repositoryName": "{{ .Values.mlflow.experiment.name }}",
     }

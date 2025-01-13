@@ -99,10 +99,6 @@
                             "type": "string",
                             "default": "generic-provider-testing"
                         },
-                        "name": {
-                            "type": "string",
-                            "default": "mlflow-test-run"
-                        },
                         "branch": {
                             "type": "string",
                             "default": "main"
