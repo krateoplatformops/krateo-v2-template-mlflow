@@ -6,7 +6,7 @@ metadata:
     {{- include "mlflow-app.labels" . | nindent 4 }}
 spec:
   tokenRef:
-    namespace: {{ .Values.mlflow.credentials.secretRef.namespace }}
-    name: {{ .Values.mlflow.credentials.secretRef.name }}
-    key: {{ .Values.mlflow.credentials.secretRef.key }}
+    namespace: {{ .Values.mlflow.credentialReferences.secretReference.namespace }}
+    name: {{ .Values.mlflow.credentialReferences.secretReference.name }}
+    key: {{ .Values.mlflow.credentialReferences.secretReference.key }}
   

@@ -71,8 +71,8 @@ git:
 mlflow:
   experiment:
     name: diabetes-training-exp1
-  credentials:
-    secretRef:
+  credentialReferences:
+    secretReference:
       namespace: mlflow-system
       name: azure-token
       key: access_token

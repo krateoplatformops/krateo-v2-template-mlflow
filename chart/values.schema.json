@@ -173,10 +173,10 @@
                         }
                     }
                 },
-                "credentials": {
+                "credentialReferences": {
                     "type": "object",
                     "properties": {
-                        "secretRef": {
+                        "secretReference": {
                             "type": "object",
                             "properties": {
                                 "namespace": {

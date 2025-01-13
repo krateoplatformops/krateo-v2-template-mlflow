@@ -12,9 +12,9 @@ spec:
       experiment_name: {{ .Values.mlflow.experiment.name }}
     credentials:
       secretRef:
-        namespace: {{ .Values.mlflow.credentials.secretRef.namespace }}
-        name: {{ .Values.mlflow.credentials.secretRef.name }}
-        key: {{ .Values.mlflow.credentials.secretRef.key }}
+        namespace: {{ .Values.mlflow.credentialReferences.secretReference.namespace }}
+        name: {{ .Values.mlflow.credentialReferences.secretReference.name }}
+        key: {{ .Values.mlflow.credentialReferences.secretReference.key }}
     run:
       name: mlflow-run-composition-{{ randAlphaNum 5 | lower }}
       alpha: "0.5"
