@@ -6,7 +6,7 @@ metadata:
     {{- include "mlflow-app.labels" . | nindent 4 }}
 spec:
   org: {{ .Values.git.toRepo.org }}
-  name: {{ .Values.mlflow.experiment.name}}
+  name: {{ .Values.mlflow.experiment.name }}
   private: {{ .Values.git.toRepo.private }}
   auto_init: {{ .Values.git.toRepo.initialize }}
   authenticationRefs:
