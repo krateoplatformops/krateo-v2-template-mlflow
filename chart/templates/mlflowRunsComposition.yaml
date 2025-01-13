@@ -1,7 +1,7 @@
 {{- $exp := lookup "mlflow.krateo.io/v1alpha1" "Experiment" .Release.Namespace (print (include "mlflow-app.fullname" .) "-experiment") -}}
 {{- if and $exp $exp.status $exp.status.experiment_id }}
 kind: MlflowRuns
-apiVersion: composition.krateo.io/v0-0-1
+apiVersion: composition.krateo.io/v0-0-2
 metadata:
   name: {{ printf "%s-runs-comp" (include "mlflow-app.fullname" .) | trunc 53 | trimSuffix "-" }}
 spec:
