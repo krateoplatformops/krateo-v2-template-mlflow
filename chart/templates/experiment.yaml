@@ -1,7 +1,7 @@
 apiVersion: mlflow.krateo.io/v1alpha1
 kind: Experiment
 metadata:
-  name: {{ include "mlflow-app.fullname" . }}-experiment
+  name: {{ .Values.mlflow.experiment.name }}-experiment
   namespace: {{ .Release.Namespace }}
 spec:
   name: {{ .Values.mlflow.experiment.name }}
