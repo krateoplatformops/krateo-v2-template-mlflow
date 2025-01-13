@@ -9,7 +9,7 @@ spec:
     ref: {{ .Values.git.toRepo.branch }}
   mlflow:
     experiment: 
-      experiment_name: {{ .Values.mlflow.experiment.name }}
+      name: {{ .Values.mlflow.experiment.name }}
     credentials:
       secretRef:
         namespace: {{ .Values.mlflow.credentialReferences.secretReference.namespace }}

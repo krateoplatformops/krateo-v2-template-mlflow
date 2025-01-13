@@ -82,11 +82,14 @@
                                             "type": "string",
                                             "default": "token"
                                         }
-                                    }
+                                    },
+                                    "required": ["namespace", "name", "key"]
                                 }
-                            }
+                            },
+                            "required": ["authMethod", "secretRef"]
                         }
-                    }
+                    },
+                    "required": ["scmUrl", "org", "name", "branch", "path", "credentials"]
                 },
                 "toRepo": {
                     "type": "object",
@@ -133,9 +136,11 @@
                                             "type": "string",
                                             "default": "token"
                                         }
-                                    }
+                                    },
+                                    "required": ["namespace", "name", "key"]
                                 }
-                            }
+                            },
+                            "required": ["authMethod", "secretRef"]
                         },
                         "apiUrl": {
                             "type": "string",
@@ -157,7 +162,8 @@
                             ],
                             "default": "Delete"
                         }
-                    }
+                    },
+                    "required": ["scmUrl", "org", "branch", "path", "credentials", "apiUrl", "private", "initialize"]
                 }
             }
         },
@@ -170,7 +176,8 @@
                         "name": {
                             "type": "string",
                             "default": "diabetes-training-exp1"
-                        }
+                        },
+                       "required": ["name"]
                     }
                 },
                 "credentialReferences": {
@@ -191,7 +198,8 @@
                                     "type": "string",
                                     "default": "access_token"
                                 }
-                            }
+                            },
+                            "required": ["namespace", "name", "key"]
                         }
                     }
                 }
