@@ -19,4 +19,4 @@ spec:
       name: mlflow-run-composition-{{ randAlphaNum 5 | lower }}
       alpha: "0.5"
       metrics:
-        - name: "mse"
+        - "mse"
