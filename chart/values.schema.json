@@ -176,8 +176,7 @@
                         "name": {
                             "type": "string",
                             "default": "diabetes-training-exp1"
-                        },
-                       "required": ["name"]
+                        }
                     }
                 },
                 "credentialReferences": {
