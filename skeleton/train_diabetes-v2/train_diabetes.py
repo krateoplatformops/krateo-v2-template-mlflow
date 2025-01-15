@@ -4,7 +4,7 @@ import mlflow.sklearn
 from sklearn.datasets import load_diabetes
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
-from sklearn.linear_model import Lasso
+from sklearn.linear_model import Ridge
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -26,9 +26,9 @@ with mlflow.start_run(run_id=args.run_id) as run:
     mlflow.log_metric("Test samples", len(data['test']['X']))
 
     # Log the algorithm parameter alpha to the run
-    mlflow.log_metric('alpha', args.alpha)
-    # Create, fit, and test the scikit-learn Lasso regression model
-    regression_model = Lasso(alpha=args.alpha)
+    mlflow.log_param('alpha', args.alpha)
+    # Create, fit, and test the scikit-learn Ridge regression model
+    regression_model = Ridge(alpha=args.alpha)
     regression_model.fit(data['train']['X'], data['train']['y'])
     preds = regression_model.predict(data['test']['X'])
 
